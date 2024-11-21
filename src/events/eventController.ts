@@ -46,7 +46,7 @@ export default class EventController {
 
   list = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const events = await this.eventService.getEvents();
+      const events = await this.eventService.getEvents(req.query);
       res.status(200).json({
         success: true,
         message: 'Events fetched successfully',

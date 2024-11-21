@@ -1,4 +1,4 @@
-import { IEvent } from '@interfaces';
+import { IEvent, IEventQuery } from './eventInterface';
 import EventRepository from './eventRepository';
 import { ConflictException, NotfoundException } from '@exception';
 import { Event } from '@prisma/client';
@@ -28,7 +28,8 @@ export default class EventService {
     return event;
   }
 
-  async getEvents(): Promise<Event[]> {
-    return await this.eventRepository.getEvents();
+  async getEvents(queryString: any): Promise<Event[]> {
+    const query = queryString as IEventQuery;
+    return await this.eventRepository.getEvents(query);
   }
 }
