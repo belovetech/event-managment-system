@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Event {
+  id          String      @id @default(cuid())
+  title       String      @unique @db.VarChar(255)
+  description String      @db.VarChar(255)
+  date        DateTime
+  location    String
+  endDate     DateTime
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  seats       EventSeat[]
+
+  @@map("event")
+}
+
+model Seat {
+  id        String      @id @default(cuid())
+  number    Int
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  events    EventSeat[]
+
+  @@map("seat")
+}
+
+model EventSeat {
+  id        String   @id @default(cuid())
+  event     Event    @relation(fields: [eventId], references: [id])
+  eventId   String
+  seat      Seat     @relation(fields: [seatId], references: [id])
+  seatId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ticket    Ticket?
+
+  @@map("event_seat")
+}
+
+model Ticket {
+  id          String    @id @default(cuid())
+  eventSeatId String    @unique
+  eventSeat   EventSeat @relation(fields: [eventSeatId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("ticket")
+}
