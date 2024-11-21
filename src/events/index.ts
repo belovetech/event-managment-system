@@ -8,4 +8,4 @@ const eventService = new EventService(eventRepository);
 const eventController = new EventController(eventService);
 const eventRoute = new EventRoute(eventController);
 
-export default eventRoute;
+export { eventRoute };

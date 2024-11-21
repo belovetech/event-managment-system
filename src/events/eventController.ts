@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import EventService from './eventService';
-import { eventSchema } from './eventValidator';
+import { eventSchema } from './eventSchema';
 import { BadRequestException } from '@exception';
 
 export default class EventController {
@@ -40,7 +40,7 @@ export default class EventController {
         data: event,
       });
     } catch (error) {
-      next(error);
+      return next(error);
     }
   };
 
@@ -53,7 +53,7 @@ export default class EventController {
         data: events,
       });
     } catch (error) {
-      next(error);
+      return next(error);
     }
   };
 }

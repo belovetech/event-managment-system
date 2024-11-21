@@ -114,7 +114,8 @@
       "@events/*": ["src/events/*"],
       "@validators/*": ["src/validators/*"],
       "@config/*": ["src/config/*"],
-      "@interfaces/*": ["src/interfaces/*"]
+      "@interfaces/*": ["src/interfaces/*"],
+      "@routes/*": ["src/routes/*"]
     }
   },
   "include": ["src/**/*.ts", ".env"],

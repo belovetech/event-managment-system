@@ -2,13 +2,17 @@
   "name": "event-management-system",
   "version": "1.0.0",
   "main": "server.ts",
+  "prisma": {
+    "seed": "ts-node --transpile-only src/prisma/seed/index.ts --schema src/prisma/schema.prisma"
+  },
   "scripts": {
     "start:dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prisma:migrate": "npx prisma migrate dev  --schema src/prisma/schema.prisma --name",
     "prisma:deploy": "npx prisma migrate deploy --schema src/prisma/schema.prisma",
     "prisma:format": "npx prisma format --schema src/prisma/schema.prisma",
-    "prisma:generate": "npx prisma generate --schema src/prisma/schema.prisma"
+    "prisma:generate": "npx prisma generate --schema src/prisma/schema.prisma",
+    "prisma:seed": "npx prisma db seed"
   },
   "keywords": [],
   "author": "Abeeb Raheem",

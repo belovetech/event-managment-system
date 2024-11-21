@@ -11,7 +11,7 @@ export class Exception extends Error {
 
 export class NotfoundException extends Exception {
   constructor(message: string = 'Forbidden error') {
-    super(400, message);
+    super(404, message);
   }
 }
 

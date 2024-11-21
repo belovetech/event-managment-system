@@ -37,7 +37,7 @@ model Event {
 
 model Seat {
   id        String      @id @default(cuid())
-  number    Int
+  number    String
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
   events    EventSeat[]
